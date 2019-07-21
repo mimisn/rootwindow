@@ -1,0 +1,59 @@
+
+import sys
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import QDate, QDateTime, QTime, Qt
+
+
+class MainWindow(QWidget):
+    def __init__(self, parent=None):
+        QMainWindow.__init__(self, parent)
+
+        self.hlayout = QVBoxLayout() # 局部布局（4个）：水平、竖直、网格、表单
+        self.vlayout = QVBoxLayout()
+        self.flayout = QFormLayout()
+
+        self.label12 = QLabel("这个标签的")
+        self.label12.setAlignment(Qt.AlignCenter)
+        self.flayout.addWidget(self.label12)
+
+
+        self.label = QLabel()
+        self.label.setAlignment(Qt.AlignCenter)
+        self.label.setText(u"这个标签的长裤可以变化吗aaaaaaaa东西南北？")
+        pe = QPalette()
+        pe.setColor(QPalette.WindowText, Qt.red)
+        self.label.setAutoFillBackground(True)
+        #pe.setColor(QPalette.Window, Qt.blue)
+        #pe.setColor(QPalette.Background,Qt.blue)
+        self.label.setPalette(pe)
+        self.label.setFont(QFont("Roman times", 25, QFont.Bold))
+        self.vlayout.addWidget(self.label, Qt.AlignJustify)
+
+
+        self.vwg = QWidget()
+        self.fwg = QWidget()
+
+        self.vwg.setLayout(self.vlayout)
+        self.fwg.setLayout(self.flayout)
+
+        self.hlayout.addWidget(self.fwg)
+        self.hlayout.addWidget(self.vwg)
+
+        self.setLayout(self.hlayout)
+
+
+
+
+        #self.setCentralWidget(self.label)
+        #self.setWindowOpacity(0.5)
+        self.setToolTip("1000")
+        #self.setWindowFlags(Qt.FramelessWindowHint | Qt.Tool)
+        #self.setAttribute(Qt.WA_TranslucentBackground)
+
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    mainwindow = MainWindow()
+    mainwindow.showMaximized()
+    sys.exit(app.exec_())
